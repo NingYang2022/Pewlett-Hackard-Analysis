@@ -19,3 +19,12 @@ FROM retiring_titles AS rt
 	LEFT JOIN mentorship_eligibility_titles AS met
 		ON (rt.title = met.title)
 ORDER BY rt.count DESC;
+
+-- How many roles will need to be filled
+SELECT SUM(rt.count) FROM retiring_titles;
+SELECT SUM(met.count) FROM mentorship_eligibility_titles;
+
+SELECT SUM(rt.count)-SUM(met.count) AS Numbers_need_to_be_filled
+FROM retiring_titles AS rt
+	LEFT JOIN mentorship_eligibility_titles AS met
+		ON (rt.title = met.title);
